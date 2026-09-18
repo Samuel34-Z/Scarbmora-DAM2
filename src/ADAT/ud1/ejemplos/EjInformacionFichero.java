@@ -10,6 +10,7 @@ public class EjInformacionFichero {
         String ruta = "F:\\scarbmora\\DAM2\\ADAT";
         // Para formatear la fecha de modificacion con el formato dd de mes de año en
         // español
+        @SuppressWarnings("deprecation")
         SimpleDateFormat formateador = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
         File f = new File(ruta);
         if (f.exists()) {

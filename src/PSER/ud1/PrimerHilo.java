@@ -15,7 +15,11 @@ class InnerPrimerHilos extends Thread {
 
     @Override
     public void run() {
-        System.out.println(getName());
+        int nSout = 10;
+        for (int i = 0; i < nSout; i++) {
+            System.out.println(getName() + " > " + i);
+        }
+
     }
 
 }

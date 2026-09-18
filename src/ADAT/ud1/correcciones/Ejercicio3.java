@@ -51,7 +51,7 @@ public class Ejercicio3 {
     public static void crearDirectorio() {
         System.out.println("\nSelecciona en la ventana donde quieres crear la carpeta...");
         selector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int respuesta = selector.showOpenDialog(null);
+        //int respuesta = selector.showOpenDialog(null);
 
         File carpetaPadre = selector.getSelectedFile();
         System.out.print("Introduce el nombre de la nueva carpeta: ");
@@ -70,7 +70,7 @@ public class Ejercicio3 {
     public static void listar() {
         System.out.println("\nSelecciona la carpeta a inspeccionar...");
         selector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int respuesta = selector.showOpenDialog(null);
+       // int respuesta = selector.showOpenDialog(null);
 
         File raiz = selector.getSelectedFile();
         System.out.println("\n--- CONTENIDO DE " + raiz.getName() + " ---");
@@ -99,7 +99,7 @@ public class Ejercicio3 {
     public static void eliminar() {
         System.out.println("\nSelecciona el archivo o carpeta que quieres BORRAR...");
         selector.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int respuesta = selector.showOpenDialog(null);
+       // int respuesta = selector.showOpenDialog(null);
 
         File objetivo = selector.getSelectedFile();
         eliminarRecursivo(objetivo);
