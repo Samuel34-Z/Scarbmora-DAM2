@@ -1,8 +1,6 @@
 package ADAT.ud1;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.util.HexFormat;
 
 /**
  * @author Samuel
@@ -10,19 +8,58 @@ import java.util.HexFormat;
 
 public class FirmasHexadecimales {
     public static void main(String[] args) {
-        File origen = new File("DATOS\\UD1.Sistema de ficheiros e directorios.pdf");
-        try (FileInputStream in = new FileInputStream(origen);) {
-            int primerosBytes = in.read();
-            int segundosBytes = in.read();
-           // HexFormat test = HexFormat.of();
-            String cadenaEnteros = (primerosBytes + "" + Integer.toString(segundosBytes).substring(0, 1));
-            int entero = Integer.valueOf(cadenaEnteros);
-            System.out.println(entero);
-            //System.out.println(Integer.toHexString(entero));
-            
-            Integer.toHexString(entero);
 
-            //System.out.println(test.toHexDigits(hexadecimal));
+        String origen = "DATOS\\UD1.Sistema de ficheiros e directorios.pdf";
+
+        try (FileInputStream in = new FileInputStream(origen);) {
+
+            switch (origen.substring(origen.lastIndexOf(".") + 1)) {
+                case "pdf":
+
+                    byte[] firma = in.readNBytes(4);
+                    int[] numerosMagicos = { 0x25, 0x50, 0x44, 0x46 };
+                    boolean continuar = true;
+
+                    for (int i = 0; i < firma.length && continuar; i++) {
+                        if (numerosMagicos[i] != (firma[i] & 0xFF)) {
+                            continuar = false;
+                        }
+                    }
+                    System.out
+                            .println(continuar ? "El archivo se trata de un pdf" : "El archivo no se trata de un pdf");
+                    break;
+                case "png":
+                    firma = in.readNBytes(4);
+                    numerosMagicos = new int[] { 0x89, 0x50, 0x4E, 0x47 };
+                    continuar = true;
+
+                    for (int i = 0; i < firma.length && continuar; i++) {
+                        if (numerosMagicos[i] != (firma[i] & 0xFF)) {
+                            continuar = false;
+                        }
+                    }
+                    System.out
+                            .println(continuar ? "El archivo se trata de un png" : "El archivo no se trata de un png");
+                    break;
+
+                case "jpg":
+                    firma = in.readNBytes(2);
+                    numerosMagicos = new int[] { 0xFF, 0xD8 };
+                    continuar = true;
+
+                    for (int i = 0; i < firma.length && continuar; i++) {
+                        if (numerosMagicos[i] != (firma[i] & 0xFF)) {
+                            continuar = false;
+                        }
+                    }
+                    System.out
+                            .println(continuar ? "El archivo se trata de un jpg" : "El archivo no se trata de un jpg");
+                    break;
+                default:
+                    System.out.println("Extensión no soportada");
+                    break;
+            }
+
         } catch (Exception e) {
             System.out.println("Se ha producido un error" + e.getMessage());
         }
