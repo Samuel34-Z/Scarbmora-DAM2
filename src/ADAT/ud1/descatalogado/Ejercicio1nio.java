@@ -1,4 +1,4 @@
-package ADAT.ud1;
+package ADAT.ud1.descatalogado;
 
 import java.io.IOException;
 import java.nio.file.Files;

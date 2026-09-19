@@ -1,4 +1,4 @@
-package ADAT.ud1;
+package ADAT.ud1.flujosBinarios;
 
 import java.io.FileInputStream;
 
@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 public class FirmasHexadecimales {
     public static void main(String[] args) {
 
-        String origen = "DATOS\\UD1.Sistema de ficheiros e directorios.pdf";
+        String origen = "DATOS\\Participación.txt";
 
         try (FileInputStream in = new FileInputStream(origen);) {
 

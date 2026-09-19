@@ -1,4 +1,4 @@
-package ADAT.ud1;
+package ADAT.ud1.descatalogado;
 
 import java.io.File;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
  * @author Samuel
  */
 
-public class Ejercicio3_Limpio {
+public class Ejercicio3 {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -24,24 +24,66 @@ public class Ejercicio3_Limpio {
                 case 2:
 
                     File directorio = fileChooser(false, true);
+
+                    // JFileChooser chooser = new JFileChooser();
+                    // chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    // int selector = chooser.showOpenDialog(null);
+
+                    // if (selector == JFileChooser.APPROVE_OPTION) {
+                    // File directorio = chooser.getSelectedFile();
+
+                    // if (directorio != null) {
                     int posicion = 0;
                     listar(directorio, posicion);
+                    // }
+
+                    // }
 
                     break;
                 case 3:
                     directorio = fileChooser(false, false);
 
+                    // chooser = new JFileChooser();
+                    // chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                    // selector = chooser.showOpenDialog(null);
+
+                    // if (selector == JFileChooser.APPROVE_OPTION) {
+                    // File directorio = chooser.getSelectedFile();
+                    // if (directorio != null) {
                     eliminar(directorio);
+                    // }
+
+                    // }
 
                     break;
                 case 4:
 
                     File origen = fileChooser(false, false);
 
+                    // chooser = new JFileChooser();
+                    // chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                    // selector = chooser.showOpenDialog(null);
+
+                    // if (selector == JFileChooser.APPROVE_OPTION) {
+                    // File origen = chooser.getSelectedFile();
+
+                    // if (origen != null) {
                     File destino = fileChooser(true, false);
+
+                    // chooser = new JFileChooser();
+                    // chooser.showSaveDialog(null);
+
+                    // File destino = chooser.getSelectedFile();
+
+                    // if (destino != null) {
 
                     System.out.println(origen.renameTo(destino) ? "Archivo guardado con exito"
                             : "El archivo no se ha podido guardar");
+                    // }
+
+                    // }
+
+                    // }
 
                     break;
                 default:
@@ -77,7 +119,13 @@ public class Ejercicio3_Limpio {
 
     private static void crearDirectorio() {
         File ruta = fileChooser(true, false);
+        // JFileChooser chooser = new JFileChooser();
 
+        // chooser.showSaveDialog(null);
+
+        // File ruta = chooser.getSelectedFile();
+
+        // if (ruta != null) {
         ruta = new File(ruta.getAbsolutePath());
 
         try {
@@ -85,6 +133,7 @@ public class Ejercicio3_Limpio {
         } catch (Exception e) {
             System.out.println("Error creando el directorio " + e.getMessage());
         }
+        // }
 
     }
 

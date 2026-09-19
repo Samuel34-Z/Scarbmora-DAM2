@@ -1,4 +1,4 @@
-package ADAT.ud1;
+package ADAT.ud1.descatalogado;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
