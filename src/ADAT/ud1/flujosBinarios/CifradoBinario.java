@@ -17,7 +17,7 @@ public class CifradoBinario {
             byte[] ficheroEncriptado = new byte[ficheroNormal.length];
 
             for (int i = 0; i < ficheroNormal.length; i++) {
-                ficheroEncriptado[i] = (byte) (~ficheroNormal[i] & 0xFF);
+                ficheroEncriptado[i] = (byte) (~ficheroNormal[i]);
             }
 
             out.write(ficheroEncriptado);

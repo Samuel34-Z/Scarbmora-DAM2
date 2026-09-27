@@ -1,4 +1,4 @@
-package ADAT.ud1.FlujosBufer;
+package ADAT.ud1.flujosBufer;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -12,8 +12,9 @@ public class ComparaRendimiento {
             long inicio = System.nanoTime();
             for (int i = 0; i < numeroBytes; i++) {
                 out.write(1);
-
+                
             }
+           
             long fin = System.nanoTime();
             System.out.println("FileOutput " + (fin - inicio));
         } catch (Exception e) {

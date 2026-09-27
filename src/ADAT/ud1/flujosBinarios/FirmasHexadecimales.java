@@ -9,51 +9,30 @@ import java.io.FileInputStream;
 public class FirmasHexadecimales {
     public static void main(String[] args) {
 
-        String origen = "DATOS\\Participación.txt";
+        String origen = "F:\\scarbmora\\DAM2\\ADAT\\apuntes\\Excepciones.pdf";
 
         try (FileInputStream in = new FileInputStream(origen);) {
 
-            switch (origen.substring(origen.lastIndexOf(".") + 1)) {
+            String extension = origen.substring(origen.lastIndexOf(".") + 1);
+
+            switch (extension) {
                 case "pdf":
 
-                    byte[] firma = in.readNBytes(4);
-                    int[] numerosMagicos = { 0x25, 0x50, 0x44, 0x46 };
-                    boolean continuar = true;
+                    byte[] numerosMagicos = in.readNBytes(4);
+                    int[] firma = { 0x25, 0x50, 0x44, 0x46 };
+                    verificarExtension(numerosMagicos, firma, extension);
 
-                    for (int i = 0; i < firma.length && continuar; i++) {
-                        if (numerosMagicos[i] != (firma[i] & 0xFF)) {
-                            continuar = false;
-                        }
-                    }
-                    System.out
-                            .println(continuar ? "El archivo se trata de un pdf" : "El archivo no se trata de un pdf");
                     break;
                 case "png":
-                    firma = in.readNBytes(4);
-                    numerosMagicos = new int[] { 0x89, 0x50, 0x4E, 0x47 };
-                    continuar = true;
-
-                    for (int i = 0; i < firma.length && continuar; i++) {
-                        if (numerosMagicos[i] != (firma[i] & 0xFF)) {
-                            continuar = false;
-                        }
-                    }
-                    System.out
-                            .println(continuar ? "El archivo se trata de un png" : "El archivo no se trata de un png");
+                    numerosMagicos = in.readNBytes(4);
+                    firma = new int[] { 0x89, 0x50, 0x4E, 0x47 };
+                    verificarExtension(numerosMagicos, firma, extension);
                     break;
 
                 case "jpg":
-                    firma = in.readNBytes(2);
-                    numerosMagicos = new int[] { 0xFF, 0xD8 };
-                    continuar = true;
-
-                    for (int i = 0; i < firma.length && continuar; i++) {
-                        if (numerosMagicos[i] != (firma[i] & 0xFF)) {
-                            continuar = false;
-                        }
-                    }
-                    System.out
-                            .println(continuar ? "El archivo se trata de un jpg" : "El archivo no se trata de un jpg");
+                    numerosMagicos = in.readNBytes(2);
+                    firma = new int[] { 0xFF, 0xD8 };
+                    verificarExtension(numerosMagicos, firma, extension);
                     break;
                 default:
                     System.out.println("Extensión no soportada");
@@ -63,5 +42,17 @@ public class FirmasHexadecimales {
         } catch (Exception e) {
             System.out.println("Se ha producido un error" + e.getMessage());
         }
+    }
+
+    private static void verificarExtension(byte[] numerosMagicos, int[] firma, String extension) {
+        boolean continuar = true;
+
+        for (int i = 0; i < numerosMagicos.length && continuar; i++) {
+            if (firma[i] != ((byte) numerosMagicos[i])) {
+                continuar = false;
+            }
+        }
+        System.out.println(
+                continuar ? "El archivo se trata de un " + extension : "El archivo no se trata de un " + extension);
     }
 }

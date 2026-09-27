@@ -2,11 +2,10 @@ package ADAT.ud1.flujosTexto;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
 
 public class AnalisisTexto {
     public static void main(String[] args) {
-        File fichero = new File("DATOS\\texto.txt");
+        File fichero = new File("DATOS\\alumnos.txt");
 
         try (FileReader in = new FileReader(fichero)) {
 
@@ -19,7 +18,7 @@ public class AnalisisTexto {
 
             char[] caracteresTexto = cadenaPura.toCharArray();
 
-            System.out.println(Arrays.toString(caracteresTexto));
+            //System.out.println(Arrays.toString(caracteresTexto));
             for (char c : caracteresTexto) {
                 if (Character.isDigit(c)) {
                     numDigitos++;
@@ -30,7 +29,7 @@ public class AnalisisTexto {
                     } else {
                         numVocales++;
                     }
-                } else {
+                } else if (Character.SPACE_SEPARATOR == c) {
                     numEspaciosVacios++;
                 }
             }
