@@ -1,4 +1,4 @@
-package ADAT.ud1.flujosTexto;
+package adat.ud1.flujosTexto;
 
 import java.io.File;
 import java.io.FileReader;

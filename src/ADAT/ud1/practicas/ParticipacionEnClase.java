@@ -1,4 +1,4 @@
-package ADAT.ud1.practicas;
+package adat.ud1.practicas;
 
 import java.io.File;
 import java.io.FileNotFoundException;

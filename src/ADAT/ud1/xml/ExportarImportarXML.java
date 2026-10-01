@@ -1,4 +1,4 @@
-package ADAT.ud1.xml;
+package adat.ud1.xml;
 
 import java.io.File;
 import java.io.IOException;
@@ -101,6 +101,7 @@ public class ExportarImportarXML {
                     System.out.print("Que desea hacer?: ");
                     eleccion = sc.nextInt();
                     sc.nextLine();
+
                     DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = null;
 

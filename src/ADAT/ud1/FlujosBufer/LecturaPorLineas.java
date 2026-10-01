@@ -1,4 +1,4 @@
-package ADAT.ud1.flujosBufer;
+package adat.ud1.flujosBufer;
 
 import java.io.BufferedReader;
 import java.io.File;

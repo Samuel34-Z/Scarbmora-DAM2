@@ -1,4 +1,4 @@
-package ADAT.ud1.ejemplos;
+package adat.ud1.ejemplos;
 
 import java.io.*;
 import java.util.Date;

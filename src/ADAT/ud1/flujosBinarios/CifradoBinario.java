@@ -1,4 +1,4 @@
-package ADAT.ud1.flujosBinarios;
+package adat.ud1.flujosBinarios;
 
 import java.io.File;
 import java.io.FileInputStream;

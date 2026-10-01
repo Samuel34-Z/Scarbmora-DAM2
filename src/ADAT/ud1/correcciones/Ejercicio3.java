@@ -1,4 +1,4 @@
-package ADAT.ud1.correcciones;
+package adat.ud1.correcciones;
 
 import java.io.File;
 import java.util.Scanner;

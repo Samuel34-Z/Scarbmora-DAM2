@@ -1,4 +1,4 @@
-package PSER.ud1;
+package pser.ud1;
 
 import java.util.Random;
 

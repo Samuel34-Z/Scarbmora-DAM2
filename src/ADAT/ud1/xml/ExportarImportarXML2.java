@@ -1,4 +1,4 @@
-package ADAT.ud1.xml;
+package adat.ud1.xml;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;

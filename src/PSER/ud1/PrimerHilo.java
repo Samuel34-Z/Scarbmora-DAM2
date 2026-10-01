@@ -1,4 +1,4 @@
-package PSER.ud1;
+package pser.ud1;
 
 public class PrimerHilo {
     public static void main(String[] args) {

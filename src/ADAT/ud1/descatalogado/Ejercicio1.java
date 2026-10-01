@@ -1,4 +1,4 @@
-package ADAT.ud1.descatalogado;
+package adat.ud1.descatalogado;
 
 import java.io.*;
 import java.text.SimpleDateFormat;

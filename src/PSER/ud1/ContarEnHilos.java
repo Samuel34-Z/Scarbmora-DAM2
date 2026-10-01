@@ -1,13 +1,11 @@
-package PSER.ud1;
+package pser.ud1;
 
-public class Contador {
-    static int contador = 0;
+public class ContarEnHilos {
 
     public static void main(String[] args) {
-
-        int nHilos = 10;
+        int nHilos = 100;
         Thread[] hilos = new Thread[nHilos];
-
+        InnerContador contador = new InnerContador();
         for (int i = 0; i < nHilos; i++) {
             hilos[i] = new HiloImplementador(contador);
             hilos[i].start();
@@ -20,25 +18,35 @@ public class Contador {
                 e.printStackTrace();
             }
         }
-        System.out.println("El contador es: " + contador);
-    }
+        System.out.println("El contador es: " + contador.getContador());
 
-    public static void setContador(int contador) {
-        Contador.contador = contador;
     }
 
 }
 
 class HiloImplementador extends Thread {
-    int contador = 0;
+    InnerContador cont;
 
-    public HiloImplementador(int contador) {
-        this.contador = contador;
+    public HiloImplementador(InnerContador cont) {
+        this.cont = cont;
     }
 
     @Override
     public void run() {
+
+        cont.incrementar();
+
+    }
+}
+
+class InnerContador {
+    private int contador;
+
+    public synchronized void incrementar() {
         contador++;
-        Contador.setContador(contador);
+    }
+
+    public int getContador() {
+        return contador;
     }
 }
