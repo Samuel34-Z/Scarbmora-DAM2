@@ -18,4 +18,11 @@ public class Persona implements Serializable{
         return "Persona [nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", altura=" + altura + "]";
     }
 
+    public Persona() {
+    }
+
+
+
+    
+
 }
