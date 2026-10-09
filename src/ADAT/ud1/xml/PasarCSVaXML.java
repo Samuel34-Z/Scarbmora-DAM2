@@ -1,4 +1,4 @@
-package ADAT.ud1.xml;
+package adat.ud1.xml;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
