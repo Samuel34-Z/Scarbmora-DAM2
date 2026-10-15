@@ -24,7 +24,7 @@ public class Ejemplo3dbcH2 {
             stmt.execute("CREATE TABLE users(id INT PRIMARY KEY, name VARCHAR(50))");
             System.out.println("✅ Tabla creada con éxito.");
             // Insertar datos
-            stmt.execute("INSERT INTO users VALUES(1, 'Pepe')");
+            stmt.executeUpdate("INSERT INTO users VALUES(1, 'Pepe')");
             ResultSet set = stmt.executeQuery("select * from users");
 
             while (set.next()) {

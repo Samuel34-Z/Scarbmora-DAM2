@@ -2,22 +2,24 @@ package pser.ud1.aparcamientos;
 
 public class SimulacionAparcamiento {
     public static void main(String[] args) {
-        final int NUM_PLAZAS = 10;
+        
         final int NUM_CONDUCTORES = 50;
         Thread[] conducotres = new Thread[NUM_CONDUCTORES];
-        Plaza[] plazas = new Plaza[NUM_PLAZAS];
-
+        Parking parking = new Parking();
+        
+        System.out.println(parking.toString());
         for (int i = 0; i < conducotres.length; i++) {
-            conducotres[i] = new Conductor(plazas,"Conductor "+i);
+            conducotres[i] = new Conductor(parking, "C" + i);
             conducotres[i].start();
         }
 
-        for (Thread conductor : conducotres) {
+        for (Thread thread : conducotres) {
             try {
-                conductor.join();
+                thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        System.out.println(parking.toString());
     }
 }

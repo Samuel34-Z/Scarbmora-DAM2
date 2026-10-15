@@ -1,20 +1,26 @@
 package pser.ud1.aparcamientos;
 
 public class Plaza {
-    private boolean posicionOcupada;
-    private String condcutorOcupa;
+    private boolean plazaOcupada;
+    private String condcutorOcupa = "L";
 
-    public void aparcar(String condcutorOcupa) {
-        posicionOcupada = true;
+    public synchronized void aparcar(String condcutorOcupa) {
+        plazaOcupada = true;
         this.condcutorOcupa = condcutorOcupa;
     }
 
     public void salir() {
-        posicionOcupada = false;
+        plazaOcupada = false;
+        condcutorOcupa = "L";
     }
 
-    public synchronized boolean isPosicionOcupada() {
-        return posicionOcupada;
+    public synchronized boolean isPlazaOcupada() {
+        return plazaOcupada;
+    }
+
+    @Override
+    public String toString() {
+        return condcutorOcupa;
     }
 
 }
