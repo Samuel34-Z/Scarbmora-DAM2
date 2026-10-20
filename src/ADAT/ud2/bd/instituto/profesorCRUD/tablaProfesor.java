@@ -1,116 +1,216 @@
 package adat.ud2.bd.instituto.profesorCRUD;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
 
 public class tablaProfesor {
+        static ProfesorDAO dao = new ProfesorDAO();
 
-        public static void main(String[] args) {//TODO trabajar con los nuevos valores
+        public static void main(String[] args) {
                 /*
                  * String url = "jdbc:h2:file:./BDs/Instituto/instituto;";
                  * String user = "sa";
                  * String password = "";
                  * 
+                 * 
                  * try (Connection conexion = DriverManager.getConnection(url, user, password);
                  * Statement ejecutor = conexion.createStatement()) {
                  * 
-                 * String crearTablasProfesores = """
-                 * Create table profesores(
-                 * id int primary key auto_increment,
-                 * nombre VARCHAR (50),
-                 * apellidos VARCHAR (100),
-                 * fecha_nacimiento DATE
-                 * )
-                 * """;
-                 * System.out.println(ejecutor.executeUpdate(crearTablasProfesores));
-                 */
-
-                /*
                  * String sql =
-                 * "INSERT INTO profesores VALUES (0, 'Pepe', 'García', '2000-12-12')";
+                 * "INSERT INTO profesores VALUES (0, 'Pepe', 'García', '2000-12-12','Calle Sol','344565431')"
+                 * ;
                  * ejecutor.executeUpdate(sql);
-                 * sql = "INSERT INTO profesores VALUES (1, 'Marta', 'Castro', '2001-2-12')";
+                 * sql =
+                 * "INSERT INTO profesores VALUES (1, 'Marta', 'Castro', '2001-2-12','Avenida de la Paz','435465871')"
+                 * ;
                  * ejecutor.executeUpdate(sql);
-                 * sql = "INSERT INTO profesores VALUES (2, 'Lolo', 'Martínez', '2002-1-12')";
+                 * sql =
+                 * "INSERT INTO profesores VALUES (2, 'Lolo', 'Martínez', '2002-1-12','Gran Vía 45','894567238')"
+                 * ;
                  * ejecutor.executeUpdate(sql);
-                 * sql = "INSERT INTO profesores VALUES (3, 'Lola', 'López', '2003-4-20')";
+                 * sql =
+                 * "INSERT INTO profesores VALUES (3, 'Lola', 'López', '2003-4-20','Calle Luna 19','985634652')"
+                 * ;
                  * ejecutor.executeUpdate(sql);
-                 * sql = "INSERT INTO profesores VALUES (4, 'Juan', 'Vázquez', '2004-5-10')";
+                 * sql =
+                 * "INSERT INTO profesores VALUES (4, 'Juan', 'Vázquez', '2004-5-10','Calle Sol','656789324')"
+                 * ;
                  * ejecutor.executeUpdate(sql);
-                 * 
-                 * 
-                 * 
                  * 
                  * } catch (Exception e) {
                  * e.printStackTrace();
                  * }
                  */
 
-                ProfesorDAO dao = new ProfesorDAO();
-                // Create
-                System.out.println("CREATE");
-                System.out.println("======");
-                ProfesorDTO profesor = new ProfesorDTO(5, "Manuel", "López",
-                                LocalDate.of(2000, 1, 1));
+                Scanner sc = new Scanner(System.in);
+                do {
+                        System.out.println("MENU ALUMNOS");
+                        System.out.println("0. Crear Tabla/BD");
+                        System.out.println("1. Insertar");
+                        System.out.println("2. Listar");
+                        System.out.println("3. Buscar por ID");
+                        System.out.println("4. Actualizar");
+                        System.out.println("5. Eliminar");
+                        System.out.println("6. Salir");
+                        System.out.print("Seleccione una opción:");
+                        int opcion = sc.nextInt();
+                        sc.nextLine();
+                        switch (opcion) {
+                                case 0:
+                                        // Crear Tabla/BD
+                                        String url;
+                                        String user;
+                                        String password;
+                                        System.out.print("Datos de tabla por defecto? [S/n]: ");
+                                        Boolean datosUser = sc.nextLine().equalsIgnoreCase("n");
 
-                String isInserted = dao.insertarProfesor(profesor) ? "Profesor insertado correctamente"
-                                : "Error de inserción de profesor";
-                System.out.println(isInserted);
+                                        if (datosUser) {
+                                                System.out.print("Introduce la url: ");
+                                                url = sc.nextLine();
+                                                System.out.print("Introduce el usuario: ");
+                                                user = sc.nextLine();
+                                                System.out.print("Introduce la contraseña: ");
+                                                password = sc.nextLine();
 
-                // Read
-                System.out.println("READ");
-                System.out.println("====");
+                                        } else {
+                                                url = "jdbc:h2:file:./BDs/Instituto/instituto;";
+                                                user = "sa";
+                                                password = "";
+                                        }
 
-                System.out.println("\n-Listado");
-                List<ProfesorDTO> lista = dao.listarProfesores();
+                                        System.out.println(
+                                                        crearTabla(url, user, password) > 0 ? "Tabla creada con éxito"
+                                                                        : "Error creando la tabla");
+                                        break;
+                                case 1:
+                                        // Insertar
+                                        System.out.print("Introduce el nombre: ");
+                                        String nombre = sc.nextLine();
+                                        System.out.print("Introduce los apellidos: ");
+                                        String apellidos = sc.nextLine();
+                                        System.out.print("Introduce la fecha de nacimiento: ");
+                                        LocalDate fechaNacimiento = Date.valueOf(sc.nextLine()).toLocalDate();
+                                        System.out.print("Introduce la dirección: ");
+                                        String direccion = sc.nextLine();
+                                        System.out.print("Introduce el teléfono :");
+                                        String telefono = sc.nextLine();
 
-                for (ProfesorDTO profesorDTO : lista) {
-                        System.out.println(profesorDTO.toString());
+                                        System.out.println(insertarProfesor(nombre, apellidos, fechaNacimiento,
+                                                        direccion, telefono) ? "Profesor insertado con éxito"
+                                                                        : "Eror insertando el profesor");
+                                        break;
+                                case 2:
+                                        // Listar
+
+                                        List<ProfesorDTO> lista = listarProfesor();
+
+                                        for (ProfesorDTO profesorDTO : lista) {
+                                                System.out.println(profesorDTO.toString());
+                                        }
+                                        break;
+                                case 3:
+                                        // Buscar por ID+
+                                        System.out.print("Introduce el id del profesor: ");
+                                        int id = sc.nextInt();
+                                        ProfesorDTO profesor = buscarProfesorPorId(id);
+                                        System.out.println(profesor.toString());
+                                        break;
+                                case 4:
+                                        // Actualizar
+
+                                        System.out.println("Introduce el id del profesor a modificar: ");
+                                        id = sc.nextInt();
+                                        sc.nextLine();
+                                        System.out.print("Introduce el nombre: ");
+                                        nombre = sc.nextLine();
+                                        System.out.print("Introduce los apellidos: ");
+                                        apellidos = sc.nextLine();
+                                        System.out.print("Introduce la fecha de nacimiento: ");
+                                        fechaNacimiento = Date.valueOf(sc.nextLine()).toLocalDate();
+                                        System.out.print("Introduce la dirección: ");
+                                        direccion = sc.nextLine();
+                                        System.out.print("Introduce el teléfono :");
+                                        telefono = sc.nextLine();
+
+                                        System.out.println(actualizarProfesor(id, nombre, apellidos, fechaNacimiento,
+                                                        direccion, telefono) ? "Profesor actualizado con éxito"
+                                                                        : "Eror actualizándo el profesor");
+                                        break;
+                                case 5:
+                                        // Eliminar
+
+                                        System.out.println("Introduce el id del profesor a borrar");
+                                        id = sc.nextInt();
+                                        System.out.println(eliminarProfesor(id) ? "Profesor borrado correctamente"
+                                                        : "Error borrando el profesor");
+
+                                        break;
+                                case 6:
+                                        // Salir
+                                        sc.close();
+                                        System.out.println("Saliendo del programa...");
+                                        return;
+                                default:
+                                        System.out.println("Opción no válida");
+                        }
+                } while (true);
+
+        }
+
+        private static boolean eliminarProfesor(int id) {
+                return dao.borrarProfesor(id);
+        }
+
+        private static boolean actualizarProfesor(int id, String nombre, String apellidos, LocalDate fechaNacimiento,
+                        String direccion, String telefono) {
+
+                ProfesorDTO profesor = new ProfesorDTO(id, nombre, apellidos, fechaNacimiento, direccion, telefono);
+                return dao.actualizarProfesor(profesor);
+        }
+
+        private static ProfesorDTO buscarProfesorPorId(int id) {
+                return dao.buscarProfesor(id);
+        }
+
+        private static List<ProfesorDTO> listarProfesor() {
+                return dao.listarProfesores();
+
+        }
+
+        private static boolean insertarProfesor(String nombre, String apellidos, LocalDate fechaNacimiento,
+                        String direccion, String telefono) {
+
+                ProfesorDTO profesor = new ProfesorDTO(nombre, apellidos,
+                                fechaNacimiento, direccion, telefono);
+
+                return dao.insertarProfesor(profesor);
+        }
+
+        private static int crearTabla(String url, String user, String password) {
+
+                try (Connection conexion = DriverManager.getConnection(url, user, password);
+                                Statement ejecutor = conexion.createStatement()) {
+
+                        String crearTablasProfesores = """
+                                        Create table profesores(
+                                        id int primary key auto_increment,
+                                        nombre VARCHAR (50),
+                                        apellidos VARCHAR (100),
+                                        fecha_nacimiento DATE,
+                                        direccion varchar(150),
+                                        telefono char(9)
+                                        )
+                                        """;
+                        return ejecutor.executeUpdate(crearTablasProfesores);
+
+                } catch (Exception e) {
+                        e.printStackTrace();
                 }
-
-                System.out.println("\n-Busqueda(id)");
-                System.out.println(dao.buscarProfesor(5).toString()); // Manuel
-
-                System.out.println("\n-Busqueda(objeto)");
-                System.out.println(dao.buscarProfesor(profesor).toString()); // Manuel
-
-                // Update
-                System.out.println("UPDATE");
-                System.out.println("======");
-                profesor = new ProfesorDTO(5, "Juan", "Perez", LocalDate.of(2010, 1, 1));
-                System.out.println(dao.actualizarProfesor(profesor) ? "Profesor actualizado correctamente"
-                                : "Error actualizando el profesor");
-                System.out.println(dao.buscarProfesor(profesor));
-
-                // Delete
-                System.out.println("DELETE");
-                System.out.println("=====");
-
-                System.out.println("\n-Borrado(id)");
-                System.out.println(
-                                dao.borrarProfesor(5) ? "Profesor borrado correctamente"
-                                                : "Error borrando el profesor");
-                lista = dao.listarProfesores();
-
-                for (ProfesorDTO profesorDTO : lista) {
-                        System.out.println(profesorDTO.toString());
-                }
-
-                System.out.println("\n-Borrado(objeto)");
-                profesor = new ProfesorDTO(5, "Manuel", "López",
-                                LocalDate.of(2000, 1, 1));
-
-                dao.insertarProfesor(profesor);
-
-                System.out.println(
-                                dao.borrarProfesor(profesor) ? "Profesor borrado correctamente"
-                                                : "Error borrando el profesor");
-
-                lista = dao.listarProfesores();
-
-                for (ProfesorDTO profesorDTO : lista) {
-                        System.out.println(profesorDTO.toString());
-                }
-
+                return 0;
         }
 }

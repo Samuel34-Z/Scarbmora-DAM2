@@ -153,3 +153,36 @@ apellidos varchar(100),
 fecha_nacimiento date,
 curso varchar(100),
 nota_media decimal(4,2)) [42101-252]
+2026-10-20 17:09:42.156504+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" ya existe
+Table "PROFESORES" already exists; SQL statement:
+Create table profesores(
+id int primary key auto_increment,
+nombre VARCHAR (50),
+apellidos VARCHAR (100),
+fecha_nacimiento DATE,
+direccion varchar(150),
+telefono char(9)
+) [42101-252]
+2026-10-20 18:26:48.757841+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" ya existe
+Table "PROFESORES" already exists; SQL statement:
+Create table profesores(
+id int primary key auto_increment,
+nombre VARCHAR (50),
+apellidos VARCHAR (100),
+fecha_nacimiento DATE,
+direccion varchar(150),
+telefono char(9)
+) [42101-252]
+2026-10-20 18:39:13.371387+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" ya existe
+Table "PROFESORES" already exists; SQL statement:
+Create table profesores(
+id int primary key auto_increment,
+nombre VARCHAR (50),
+apellidos VARCHAR (100),
+fecha_nacimiento DATE,
+direccion varchar(150),
+telefono char(9)
+) [42101-252]

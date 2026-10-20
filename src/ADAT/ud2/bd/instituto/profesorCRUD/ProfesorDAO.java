@@ -53,17 +53,16 @@ public class ProfesorDAO {
             String sql = """
                     INSERT INTO profesores
                     VALUES
-                    (?, ?, ?, ?, ?, ?)
+                    (DEFAULT, ?, ?, ?, ?, ?)
                     """;
 
             try (PreparedStatement sentencia = conexion.prepareStatement(sql);) {
 
-                sentencia.setInt(1, profesor.getId());
-                sentencia.setString(2, profesor.getNombre());
-                sentencia.setString(3, profesor.getApellidos());
-                sentencia.setDate(4, Date.valueOf(profesor.getFechaNacimiento()));
-                sentencia.setString(5, profesor.getDireccion());
-                sentencia.setString(6, profesor.getTelefono());
+                sentencia.setString(1, profesor.getNombre());
+                sentencia.setString(2, profesor.getApellidos());
+                sentencia.setDate(3, Date.valueOf(profesor.getFechaNacimiento()));
+                sentencia.setString(4, profesor.getDireccion());
+                sentencia.setString(5, profesor.getTelefono());
 
                 return sentencia.executeUpdate() > 0;
             } catch (Exception e) {
@@ -178,9 +177,9 @@ public class ProfesorDAO {
                 sentencia.setString(1, profesor.getNombre());
                 sentencia.setString(2, profesor.getApellidos());
                 sentencia.setDate(3, Date.valueOf(profesor.getFechaNacimiento()));
-                sentencia.setInt(4, profesor.getId());
-                sentencia.setString(5, profesor.getDireccion());
-                sentencia.setString(6, profesor.getTelefono());
+                sentencia.setInt(6, profesor.getId());
+                sentencia.setString(4, profesor.getDireccion());
+                sentencia.setString(5, profesor.getTelefono());
 
                 resultado = sentencia.executeUpdate() > 0;
 
