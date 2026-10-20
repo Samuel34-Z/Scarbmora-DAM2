@@ -1,4 +1,4 @@
-package adat.ud2.bd;
+package adat.ud2.bd.descatalogado;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

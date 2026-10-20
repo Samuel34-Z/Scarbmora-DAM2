@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class AppInstituto {
     public static void main(String[] args) {
-        String url = "jdbc:h2:mem:instituto;DB_CLOSE_DELAY=-1";
+        String url = "jdbc:h2:file:./BDs/Instituto/instituto;AUTO_SERVER=TRUE";
         String user = "sa";
         String password = "";
 

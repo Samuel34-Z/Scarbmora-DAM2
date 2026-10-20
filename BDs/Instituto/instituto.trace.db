@@ -1,0 +1,155 @@
+2026-10-16 13:27:59.485128+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "ALUMNOS" ya existe
+Table "ALUMNOS" already exists; SQL statement:
+Create table alumnos(
+id int primary key auto_increment,
+nombre varchar(50),
+apellidos varchar(100),
+fecha_nacimiento date,
+curso varchar(100),
+nota_media decimal(4,2)) [42101-252]
+2026-10-16 13:42:23.519793+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+Insert into alumnos
+values(?,?,?,?,?) [21002-252]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:294)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:40)
+	at org.h2.command.Parser.prepareCommand(Parser.java:492)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:648)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:564)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1161)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:315)
+	at adat.ud2.bd.EjemploEvitarInyeccion.insertar(EjemploEvitarInyeccion.java:32)
+	at adat.ud2.bd.EjemploEvitarInyeccion.main(EjemploEvitarInyeccion.java:13)
+2026-10-16 14:03:09.233491+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Parametro "#4" no está fijado
+Parameter "#4" is not set; SQL statement:
+Insert into alumnos
+values(?, ?, ?, ?, ?, ?) [90012-252]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:203)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:129)
+	at org.h2.command.Command.executeUpdate(Command.java:307)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:213)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:172)
+	at adat.ud2.bd.EjemploEvitarInyeccion.insertar(EjemploEvitarInyeccion.java:59)
+	at adat.ud2.bd.EjemploEvitarInyeccion.main(EjemploEvitarInyeccion.java:14)
+2026-10-16 14:04:58.959108+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Parametro "#4" no está fijado
+Parameter "#4" is not set; SQL statement:
+Insert into alumnos
+values(?, ?, ?, ?, ?, ?) [90012-252]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:203)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:129)
+	at org.h2.command.Command.executeUpdate(Command.java:307)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:213)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:172)
+	at adat.ud2.bd.EjemploEvitarInyeccion.insertar(EjemploEvitarInyeccion.java:59)
+	at adat.ud2.bd.EjemploEvitarInyeccion.main(EjemploEvitarInyeccion.java:14)
+2026-10-17 11:03:51.680978+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" ya existe
+Table "PROFESORES" already exists; SQL statement:
+        Create table profesores(
+            id int primary key auto_increment,
+            nombre VARCHAR (50),
+            apellidos VARCHAR (100),
+            fecha_nacimiento DATE,
+            direccion varchar(100),
+            telefono char(9)
+  [42101-252]
+2026-10-17 11:12:44.024920+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" no encontrada
+Table "PROFESORES" not found; SQL statement:
+drop table profesores [42102-252]
+2026-10-17 11:13:04.519398+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" no encontrada
+Table "PROFESORES" not found; SQL statement:
+drop table profesores [42102-252]
+2026-10-17 11:13:15.115189+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "        Create table profesores(\000a            id int primary key auto_increment,\000a            nombre VARCHAR (50),\000a            apellidos VARCHAR (100),\000a            fecha_nacimiento DATE,\000a        [*])\000a"; se esperaba "identifier"
+Syntax error in SQL statement "        Create table profesores(\000a            id int primary key auto_increment,\000a            nombre VARCHAR (50),\000a            apellidos VARCHAR (100),\000a            fecha_nacimiento DATE,\000a        [*])\000a"; expected "identifier"; SQL statement:
+        Create table profesores(
+            id int primary key auto_increment,
+            nombre VARCHAR (50),
+            apellidos VARCHAR (100),
+            fecha_nacimiento DATE,
+        )
+ [42001-252]
+2026-10-17 11:14:08.432806+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROFESORES" ya existe
+Table "PROFESORES" already exists; SQL statement:
+        Create table profesores(
+            id int primary key auto_increment,
+            nombre VARCHAR (50),
+            apellidos VARCHAR (100),
+            fecha_nacimiento DATE
+  [42101-252]
+2026-10-17 11:21:32.589693+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO profesores VALUES (0, 'Pepe', 'García', '2000-12-12', 'DAM2', NULL) [21002-252]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:294)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:40)
+	at org.h2.command.Parser.prepareCommand(Parser.java:492)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:648)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:564)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1161)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at adat.ud2.bd.instituto.profesorCRUD.tablaProfesor.main(tablaProfesor.java:39)
+2026-10-17 17:05:45.232448+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select * from profesores where id [*]?\000a"
+Syntax error in SQL statement "select * from profesores where id [*]?\000a"; SQL statement:
+select * from profesores where id ?
+ [42000-252]
+2026-10-17 17:10:29.025127+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "update profesores\000aset nombre = ?\000a[*]apellidos = ?,\000afecha_nacimiento = ?\000awhere id = ?\000a"
+Syntax error in SQL statement "update profesores\000aset nombre = ?\000a[*]apellidos = ?,\000afecha_nacimiento = ?\000awhere id = ?\000a"; SQL statement:
+update profesores
+set nombre = ?
+apellidos = ?,
+fecha_nacimiento = ?
+where id = ?
+ [42000-252]
+2026-10-17 17:11:18.405549+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "update profesores\000aset nombre = ?\000a    [*]apellidos = ?,\000a    fecha_nacimiento = ?\000awhere id = ?\000a"
+Syntax error in SQL statement "update profesores\000aset nombre = ?\000a    [*]apellidos = ?,\000a    fecha_nacimiento = ?\000awhere id = ?\000a"; SQL statement:
+update profesores
+set nombre = ?
+    apellidos = ?,
+    fecha_nacimiento = ?
+where id = ?
+ [42000-252]
+2026-10-20 12:40:06.933284+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "ALUMNOS" ya existe
+Table "ALUMNOS" already exists; SQL statement:
+Create table alumnos(
+id int primary key auto_increment,
+nombre varchar(50),
+apellidos varchar(100),
+fecha_nacimiento date,
+curso varchar(100),
+nota_media decimal(4,2)) [42101-252]
