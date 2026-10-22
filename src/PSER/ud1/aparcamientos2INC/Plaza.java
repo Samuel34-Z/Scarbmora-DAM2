@@ -1,4 +1,4 @@
-package pser.ud1.aparcamientos2;
+package pser.ud1.aparcamientos2INC;
 
 public class Plaza {/*
                      * TODO

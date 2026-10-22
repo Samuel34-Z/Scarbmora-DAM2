@@ -33,15 +33,6 @@ public class Conductor extends Thread {
                 }
             }
 
-            /*
-             * 
-             * try {
-             * wait();
-             * } catch (InterruptedException e) {
-             * e.printStackTrace();
-             * }
-             */
-
         }
 
         try {

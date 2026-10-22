@@ -24,7 +24,6 @@ public class Parking {
 
     public void salir(int posicion){
         plazas[posicion].salir();
-        notify();
     }
 
     public Plaza[] getPlazas() {
