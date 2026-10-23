@@ -6,16 +6,13 @@ public class Jefe extends Thread {
     public Jefe(Oficina oficina) {
         this.oficina = oficina;
     }
-/* 
-    public void avisar(Oficina oficina) {
-        synchronized (oficina) {
-            
-        }
-    } */
 
     @Override
     public void run() {
-        oficina.entrar(this);
-        /* avisar(oficina); */
+        synchronized (oficina) {
+            System.out.println("EL JEFE HA LLEGADO!");
+            oficina.entrar(this);
+            oficina.notifyAll();
+        }
     }
 }

@@ -10,19 +10,20 @@ public class Empleado extends Thread {
     @Override
     public void run() {
         oficina.entrar(this);
-        /* if (oficina.getEstaElJefe() == true) {
-            System.out.println("Hola jefe!, me pongo a trabajar...");
-        } else {
-            System.out.println("ZZZZZZ");
-            synchronized (oficina) {
+        synchronized (oficina) {
+            if (oficina.getEstaElJefe() == true) {
+                System.out.println("Hola jefe!, me pongo a trabajar...");
+            } else {
+                System.out.println("ZZZZZZ");
+
                 try {
-                    wait();
+                    oficina.wait();
                     System.out.println("buenos días jefe, aquí estoy trabajando");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        } */
+        }
 
     }
 }

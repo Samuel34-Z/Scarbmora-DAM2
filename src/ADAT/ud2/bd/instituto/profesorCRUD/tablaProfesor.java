@@ -12,40 +12,6 @@ public class tablaProfesor {
         static ProfesorDAO dao = new ProfesorDAO();
 
         public static void main(String[] args) {
-                /*
-                 * String url = "jdbc:h2:file:./BDs/Instituto/instituto;";
-                 * String user = "sa";
-                 * String password = "";
-                 * 
-                 * 
-                 * try (Connection conexion = DriverManager.getConnection(url, user, password);
-                 * Statement ejecutor = conexion.createStatement()) {
-                 * 
-                 * String sql =
-                 * "INSERT INTO profesores VALUES (0, 'Pepe', 'García', '2000-12-12','Calle Sol','344565431')"
-                 * ;
-                 * ejecutor.executeUpdate(sql);
-                 * sql =
-                 * "INSERT INTO profesores VALUES (1, 'Marta', 'Castro', '2001-2-12','Avenida de la Paz','435465871')"
-                 * ;
-                 * ejecutor.executeUpdate(sql);
-                 * sql =
-                 * "INSERT INTO profesores VALUES (2, 'Lolo', 'Martínez', '2002-1-12','Gran Vía 45','894567238')"
-                 * ;
-                 * ejecutor.executeUpdate(sql);
-                 * sql =
-                 * "INSERT INTO profesores VALUES (3, 'Lola', 'López', '2003-4-20','Calle Luna 19','985634652')"
-                 * ;
-                 * ejecutor.executeUpdate(sql);
-                 * sql =
-                 * "INSERT INTO profesores VALUES (4, 'Juan', 'Vázquez', '2004-5-10','Calle Sol','656789324')"
-                 * ;
-                 * ejecutor.executeUpdate(sql);
-                 * 
-                 * } catch (Exception e) {
-                 * e.printStackTrace();
-                 * }
-                 */
 
                 Scanner sc = new Scanner(System.in);
                 do {
@@ -70,8 +36,9 @@ public class tablaProfesor {
                                         Boolean datosUser = sc.nextLine().equalsIgnoreCase("n");
 
                                         if (datosUser) {
+                                                url = "jdbc:h2:file:./";
                                                 System.out.print("Introduce la url: ");
-                                                url = sc.nextLine();
+                                                url += sc.nextLine();
                                                 System.out.print("Introduce el usuario: ");
                                                 user = sc.nextLine();
                                                 System.out.print("Introduce la contraseña: ");
@@ -84,7 +51,7 @@ public class tablaProfesor {
                                         }
 
                                         System.out.println(
-                                                        crearTabla(url, user, password) > 0 ? "Tabla creada con éxito"
+                                                        crearTabla(url, user, password) >= 0 ? "Tabla creada con éxito"
                                                                         : "Error creando la tabla");
                                         break;
                                 case 1:
@@ -118,7 +85,12 @@ public class tablaProfesor {
                                         System.out.print("Introduce el id del profesor: ");
                                         int id = sc.nextInt();
                                         ProfesorDTO profesor = buscarProfesorPorId(id);
-                                        System.out.println(profesor.toString());
+                                        if (profesor == null) {
+                                                System.out.println("Profesor no encontrado");
+                                        } else {
+                                                System.out.println(profesor.toString());
+                                        }
+
                                         break;
                                 case 4:
                                         // Actualizar
@@ -130,7 +102,7 @@ public class tablaProfesor {
                                         nombre = sc.nextLine();
                                         System.out.print("Introduce los apellidos: ");
                                         apellidos = sc.nextLine();
-                                        System.out.print("Introduce la fecha de nacimiento: ");
+                                        System.out.print("Introduce la fecha de nacimiento [yyyy-MM-dd]: ");
                                         fechaNacimiento = Date.valueOf(sc.nextLine()).toLocalDate();
                                         System.out.print("Introduce la dirección: ");
                                         direccion = sc.nextLine();
@@ -197,7 +169,7 @@ public class tablaProfesor {
                                 Statement ejecutor = conexion.createStatement()) {
 
                         String crearTablasProfesores = """
-                                        Create table profesores(
+                                        Create table if not exists profesores(
                                         id int primary key auto_increment,
                                         nombre VARCHAR (50),
                                         apellidos VARCHAR (100),

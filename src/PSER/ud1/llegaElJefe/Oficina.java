@@ -10,17 +10,14 @@ public class Oficina {
     public Oficina() {
     }
 
-    public synchronized void entrar(Object persona) {
+    public void entrar(Object persona) {
         if (persona instanceof Jefe) {
-            System.out.println("EL JEFE HA LLEGADO!");
             Jefe jefe = (Jefe) persona;
             estaElJefe = true;
-            notifyAll();
             personas.add(jefe);
 
         } else {
             Empleado empleado = (Empleado) persona;
-            entrarEmpleado(persona);
             personas.add(empleado);
         }
 

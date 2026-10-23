@@ -1,5 +1,4 @@
 package adat.ud2.bd.instituto.profesorCRUD;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
