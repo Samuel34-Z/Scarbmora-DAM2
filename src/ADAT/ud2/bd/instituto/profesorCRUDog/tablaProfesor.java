@@ -1,4 +1,4 @@
-package adat.ud2.bd.instituto.profesorCRUD;
+package adat.ud2.bd.instituto.profesorCRUDog;
 
 import java.sql.Connection;
 import java.sql.Date;

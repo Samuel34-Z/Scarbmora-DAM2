@@ -186,3 +186,12 @@ fecha_nacimiento DATE,
 direccion varchar(150),
 telefono char(9)
 ) [42101-252]
+2026-10-24 13:28:52.190039+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "    create [*]if not exists table materias(\000a    codigoMateria int primary key auto_increment,\000a    nombre varchar(150),\000a    siglas varchar(15)\000a)\000a"; se esperaba "OR REPLACE, FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"
+Syntax error in SQL statement "    create [*]if not exists table materias(\000a    codigoMateria int primary key auto_increment,\000a    nombre varchar(150),\000a    siglas varchar(15)\000a)\000a"; expected "OR REPLACE, FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"; SQL statement:
+    create if not exists table materias(
+    codigoMateria int primary key auto_increment,
+    nombre varchar(150),
+    siglas varchar(15)
+)
+ [42001-252]
