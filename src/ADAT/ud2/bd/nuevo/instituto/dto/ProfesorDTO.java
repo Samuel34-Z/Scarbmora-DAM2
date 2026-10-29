@@ -11,11 +11,11 @@ public class ProfesorDTO {
     private String direccion;
     private String telefono;
 
-    public ProfesorDTO(int id, String nombre, String apellidos, LocalDate fechaNacimiento/*
+    public ProfesorDTO(int codigoProfesor, String nombre, String apellidos, LocalDate fechaNacimiento/*
                                           * ,
                                           * List<String> cursosImparte
                                           */, String direccion, String telefono) {
-        this.codigoProfesor = id;
+        this.codigoProfesor = codigoProfesor;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;

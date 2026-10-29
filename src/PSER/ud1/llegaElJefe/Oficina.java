@@ -10,33 +10,14 @@ public class Oficina {
     public Oficina() {
     }
 
-    public void entrar(Object persona) {
-        if (persona instanceof Jefe) {
-            Jefe jefe = (Jefe) persona;
-            estaElJefe = true;
-            personas.add(jefe);
-
-        } else {
-            Empleado empleado = (Empleado) persona;
-            personas.add(empleado);
-        }
-
+    public void entrar(Jefe jefe) {
+        estaElJefe = true;
+        personas.add(jefe);
     }
 
-    private void entrarEmpleado(Object empleado) {
-        if (getEstaElJefe() == true) {
-            System.out.println("Hola jefe!, me pongo a trabajar...");
-        } else {
-            System.out.println("ZZZZZZ");
-            synchronized (this) {
-                try {
-                    wait();
-                    System.out.println("buenos días jefe, aquí estoy trabajando");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    public void entrar(Empleado empleado) {
+        personas.add(empleado);
+
     }
 
     public boolean getEstaElJefe() {
