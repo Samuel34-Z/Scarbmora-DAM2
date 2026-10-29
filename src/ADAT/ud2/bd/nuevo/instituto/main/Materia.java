@@ -114,10 +114,10 @@ public class Materia {
 
         try (Statement ejecutor = conexion.createStatement()) {
             String sql = """
-                        create table if not exists materias(
-                        codigoMateria int primary key auto_increment,
-                        nombre varchar(150),
-                        siglas varchar(15)
+                        create table if not exists materias (
+                        codigo_Materia integer primary key auto_increment,
+                        varchar(150) nombre,
+                        varchar(15) siglas
                     )
                     """;
             return ejecutor.executeUpdate(sql) > 0;

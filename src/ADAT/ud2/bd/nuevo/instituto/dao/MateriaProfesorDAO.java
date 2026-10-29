@@ -72,6 +72,10 @@ public class MateriaProfesorDAO {
 
         Connection conexion = Conexion.getConection();
 
+        if (ProfesorDAO.buscarProfesor(codigoProfesor) == null || MateriaDAO.buscarMateria(codigoMateria) == null) {
+            return false;
+        }
+
         String sql = """
                 insert into materiaProfesor (codigo_Materia,codigo_Profesor)
                 values (?,?)

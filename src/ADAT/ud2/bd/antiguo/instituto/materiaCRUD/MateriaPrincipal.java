@@ -5,7 +5,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Scanner;
 
-public class mainMateria {
+public class MateriaPrincipal {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {

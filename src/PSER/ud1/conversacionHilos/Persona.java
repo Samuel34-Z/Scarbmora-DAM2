@@ -1,20 +1,39 @@
 package pser.ud1.conversacionHilos;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Persona extends Thread {
-    Espacio lugar;
+    BufferedReader lector;
     String nombre;
-    File archivo;
 
-    public Persona(String nombre, Espacio lugar) {
+    public Persona(String nombre, BufferedReader lector) {
         this.nombre = nombre;
-        this.lugar = lugar;
+        this.lector = lector;
     }
 
     @Override
     public void run() {
-        lugar.hablar(nombre);
+        hablar();
+    }
+
+    private void hablar() {
+        synchronized (lector) {
+            String frase;
+
+            try {
+                while ((frase = lector.readLine()) != null) {
+
+                    System.out.println(nombre + " " + frase);
+                    lector.notify();
+                    lector.wait();
+                }
+                lector.notify();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

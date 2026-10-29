@@ -57,13 +57,14 @@ public class MateriaDAO {
 
     public static List<MateriaDTO> buscarMateria(int codigoMateria) {
 
-        List<MateriaDTO> materiaResultante = new ArrayList<>();
+        List<MateriaDTO> materiaResultante = null;
         String sql = """
                 select * from materias
-                where id = ?
+                where codigo_Materia = ?
                 """;
 
         try {
+            materiaResultante = new ArrayList<>();
             PreparedStatement sentencia = conexion.prepareStatement(sql);
 
             sentencia.setInt(1, codigoMateria);
@@ -89,7 +90,7 @@ public class MateriaDAO {
                 update materias
                 set nombre = ?,
                 siglas = ?
-                where id = ?
+                where codigo_Materia = ?
                 """;
 
         try {
@@ -111,7 +112,7 @@ public class MateriaDAO {
 
         String sql = """
                 delete from materias
-                where id = ?
+                where codigo_Materia = ?
                 """;
 
         try {

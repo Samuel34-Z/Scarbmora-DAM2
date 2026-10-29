@@ -29,7 +29,7 @@ public class ProfesorDAO {
             try (ResultSet rs = ejecutor.executeQuery("select * from profesores")) {
                 profesores = new ArrayList<>();
                 while (rs.next()) {
-                    profesores.add(new ProfesorDTO(rs.getInt("codProfesor"),
+                    profesores.add(new ProfesorDTO(rs.getInt("codigo_Profesor"),
                             rs.getString("nombre"),
                             rs.getString("apellidos"),
                             rs.getDate("fecha_nacimiento").toLocalDate(),
@@ -85,7 +85,7 @@ public class ProfesorDAO {
         try (Connection conexion = DriverManager.getConnection(url, user, password)) {
 
             String buscarProfesor = """
-                    select * from profesores where codProfesor=?
+                    select * from profesores where codigo_Profesor=?
                     """;
 
             try (PreparedStatement sentencia = conexion.prepareStatement(buscarProfesor);) {
@@ -95,7 +95,7 @@ public class ProfesorDAO {
                 try (ResultSet rs = sentencia.executeQuery();) {
                     while (rs.next()) {
                         profesorResultante = new ProfesorDTO(
-                                rs.getInt("codProfesor"),
+                                rs.getInt("codigo_Profesor"),
                                 rs.getString("nombre"),
                                 rs.getString("apellidos"),
                                 rs.getDate("fecha_nacimiento").toLocalDate(),
@@ -119,12 +119,12 @@ public class ProfesorDAO {
 
     }
 
-    public ProfesorDTO buscarProfesor(int id) {
+    public static ProfesorDTO buscarProfesor(int id) {
         ProfesorDTO profesorResultante = null;
         try (Connection conexion = DriverManager.getConnection(url, user, password)) {
 
             String buscarProfesor = """
-                    select * from profesores where codProfesor = ?
+                    select * from profesores where codigo_Profesor = ?
                     """;
 
             try (PreparedStatement sentencia = conexion.prepareStatement(buscarProfesor)) {
@@ -134,7 +134,7 @@ public class ProfesorDAO {
                 try (ResultSet rs = sentencia.executeQuery();) {
                     while (rs.next()) {
                         profesorResultante = new ProfesorDTO(
-                                rs.getInt("codProfesor"),
+                                rs.getInt("codigo_Profesor"),
                                 rs.getString("nombre"),
                                 rs.getString("apellidos"),
                                 rs.getDate("fecha_nacimiento").toLocalDate(),
@@ -171,7 +171,7 @@ public class ProfesorDAO {
                     fecha_nacimiento = ?,
                     direccion = ?,
                     telefono = ?
-                    where codProfesor = ?
+                    where codigo_Profesor = ?
                     """;
 
             try (PreparedStatement sentencia = conextion.prepareStatement(actualizarProfesor)) {
@@ -202,7 +202,7 @@ public class ProfesorDAO {
 
             String borrarProfesor = """
                     delete from profesores
-                    where codProfesor = ?
+                    where codigo_Profesor = ?
                     """;
 
             try (PreparedStatement sentencia = conexion.prepareStatement(borrarProfesor)) {
@@ -229,7 +229,7 @@ public class ProfesorDAO {
 
             String borrarProfesor = """
                     delete from profesores
-                    where codProfesor = ?
+                    where codigo_Profesor = ?
                     """;
 
             try (PreparedStatement sentencia = conexion.prepareStatement(borrarProfesor)) {
