@@ -28,7 +28,7 @@ public class Profesor {
                     crearTabla();
                     break;
                 case 1:
-
+                    
                     break;
                 case 2:
 

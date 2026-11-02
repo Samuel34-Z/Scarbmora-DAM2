@@ -25,13 +25,15 @@ public class Conexion {
         String url = propiedades.getProperty("db.url");
         String user = propiedades.getProperty("db.user");
         String password = propiedades.getProperty("db.password","");
-        Connection conexion = null;
         try {
-            conexion = DriverManager.getConnection(url,user,password);
+          Connection conexion = DriverManager.getConnection(url,user,password);
+          return conexion;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
 
-        return conexion;
+        
     }
+    
 }

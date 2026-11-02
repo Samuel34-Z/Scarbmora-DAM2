@@ -15,11 +15,9 @@ public class InsertarDatos {
             conexion.setAutoCommit(false);
 
             BufferedReader in = new BufferedReader(new FileReader(fichero));
-            String consulta = in.readAllAsString();
-            consulta.split(";");
-
             Statement sentencia = conexion.createStatement();
-            sentencia.executeUpdate(fichero);
+            sentencia.execute(in.readAllAsString());
+            in.close();
             conexion.commit();
             insercionExitosa = true;
         } catch (SQLException e) {
@@ -32,8 +30,7 @@ public class InsertarDatos {
         } catch (FileNotFoundException e) {
             System.out.println("El fichero que se está pasando no es accesible por el programa " + e.getMessage());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Se ha producido un error tratando de acceder al fichero " + e.getMessage());
         } finally {
             try {
                 conexion.setAutoCommit(true);
