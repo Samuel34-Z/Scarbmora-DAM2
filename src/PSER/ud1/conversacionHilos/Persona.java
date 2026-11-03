@@ -23,9 +23,8 @@ public class Persona extends Thread {
 
             try {
                 while ((frase = lector.readLine()) != null) {
-
-                    System.out.println(nombre + " " + frase);
                     lector.notify();
+                    System.out.println(nombre + " " + frase);
                     lector.wait();
                 }
                 lector.notify();
