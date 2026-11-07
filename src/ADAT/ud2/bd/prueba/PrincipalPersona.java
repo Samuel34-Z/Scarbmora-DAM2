@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PrincipalPersona {
+    private static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
         boolean salir = false;
         PersonaDAOimp personaDAO = new PersonaDAOimp();
+
         do {
 
             System.out.println("MENÚ");
@@ -23,13 +26,18 @@ public class PrincipalPersona {
             System.out.println("6. Actualizar persona");
             System.out.println("7. Salir");
             System.out.print("Que operación desea realizar?: ");
-            Scanner sc = new Scanner(System.in);
+
             int opcion = sc.nextInt();
             sc.nextLine();
 
             switch (opcion) {
                 case 1:
-                    crearTabla();
+                    if (crearTabla()) {
+                        System.out.println("Tabla creada con éxito");
+                    } else {
+                        System.out.println("Error creando la tabla");
+                    }
+
                     break;
 
                 case 2:
@@ -40,7 +48,60 @@ public class PrincipalPersona {
                         System.out.println(personaDTO.toString());
                     }
 
+                case 3:
+
+                    System.out.print("Introduce el código de la persona a buscar: ");
+                    int codigoPersona = sc.nextInt();
+
+                    PersonaDTO persona = personaDAO.buscarPersona(codigoPersona);
+
+                    if (persona != null) {
+                        System.out.println(persona.toString());
+                    } else {
+                        System.out.println("No se ha encontrado ninguna persona con el código " + codigoPersona);
+                    }
+
                     break;
+
+                case 4:
+
+                    persona = pedirPersona(false);
+
+                    if (persona != null) {
+                        if (personaDAO.agregarPersona(persona)) {
+                            System.out.println("Persona agregada con éxito");
+                        } else {
+                            System.out.println("Error agregando la persona");
+                        }
+                    }
+
+                    break;
+
+                case 5:
+
+                    System.out.print("Introduce el código de la persona a eliminar: ");
+                    codigoPersona = sc.nextInt();
+
+                    if (personaDAO.eliminarPersona(codigoPersona)) {
+                        System.out.println("Perona eliminada con éxito");
+                    } else {
+                        System.out.println("Error eliminando la persona con el código " + codigoPersona);
+                    }
+
+                    break;
+
+                case 6:
+                    persona = pedirPersona(true);
+                    if (persona != null) {
+                        if (personaDAO.actualizarPersona(persona)) {
+                            System.out.println("Persona actualizada con éxito");
+                        } else {
+                            System.out.println("Error actualizando la persona");
+                        }
+                    }
+
+                    break;
+
                 case 7:
                     System.out.println("Cerrando menú...");
                     salir = true;
@@ -52,6 +113,25 @@ public class PrincipalPersona {
             }
 
         } while (!salir);
+    }
+
+    private static PersonaDTO pedirPersona(boolean codigo) {
+        int codigoPersona = 0;
+        if (codigo) {
+            System.out.print("Introduce el código de la persona: ");
+            codigoPersona = sc.nextInt();
+            sc.nextLine();
+        }
+        System.out.print("Introduce el NIF de la persona: ");
+        String nif = sc.nextLine();
+        if (!nif.matches("\\d{8}[A-Z]")) {
+            System.out.println("NIF introducido es incorrecto");
+            return null;
+        }
+        System.out.print("Introduce el nombre de la persona: ");
+        String nombre = sc.nextLine();
+
+        return codigo ? new PersonaDTO(codigoPersona, nif, nombre) : new PersonaDTO(nif, nombre);
     }
 
     private static boolean crearTabla() {
