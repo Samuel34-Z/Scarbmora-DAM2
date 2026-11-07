@@ -3,6 +3,7 @@ package adat.ud2.bd.prueba;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +13,8 @@ public class PrincipalPersona {
 
     public static void main(String[] args) {
         boolean salir = false;
-        PersonaDAOimp personaDAO = new PersonaDAOimp();
+        Connection con = Conexion.getConection();
+        PersonaDAOimp personaDAO = new PersonaDAOimp(con);
 
         do {
 
@@ -47,6 +49,7 @@ public class PrincipalPersona {
                     for (PersonaDTO personaDTO : lista) {
                         System.out.println(personaDTO.toString());
                     }
+                    break;
 
                 case 3:
 
@@ -106,6 +109,11 @@ public class PrincipalPersona {
                     System.out.println("Cerrando menú...");
                     salir = true;
                     sc.close();
+                    try {
+                        con.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     System.out.println("Dato introducido incorrecto");

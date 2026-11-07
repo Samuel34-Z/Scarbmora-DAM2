@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonaDAOimp implements PersonaDAO {
-    Connection conexion = Conexion.getConection();
+    Connection conexion;
+
+    public PersonaDAOimp(Connection conexion) {
+        this.conexion = conexion;
+    }
 
     @Override
     public List<PersonaDTO> listarPersonas() {
@@ -23,6 +27,7 @@ public class PersonaDAOimp implements PersonaDAO {
             while (rs.next()) {
                 lista.add(new PersonaDTO(rs.getInt("codigo_persona"), rs.getString("nif"), rs.getString("nombre")));
             }
+            rs.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,6 +52,7 @@ public class PersonaDAOimp implements PersonaDAO {
             if (rs.next()) {
                 persona = new PersonaDTO(rs.getInt("codigo_persona"), rs.getString("nif"), rs.getString("nombre"));
             }
+            rs.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,6 +77,8 @@ public class PersonaDAOimp implements PersonaDAO {
 
             personaAgregada = sentenciaParametrizada.executeUpdate() > 0;
 
+            sentenciaParametrizada.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,6 +101,8 @@ public class PersonaDAOimp implements PersonaDAO {
             sentenciaParametrizada.setInt(1, codigo);
 
             personaEliminada = sentenciaParametrizada.executeUpdate() > 0;
+
+            sentenciaParametrizada.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,6 +130,8 @@ public class PersonaDAOimp implements PersonaDAO {
             sentenciaParametrizada.setInt(3, persona.getCodigo_persona());
 
             personaActualizada = sentenciaParametrizada.executeUpdate() > 0;
+
+            sentenciaParametrizada.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
