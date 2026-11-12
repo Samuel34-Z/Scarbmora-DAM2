@@ -25,25 +25,34 @@ public class Principal {
                 caracterAceptado = true;
             }
         } while (!caracterAceptado);
-
+        sc.close();
+        String hash = Utiles.generateHash(contrasenha);
         Hacker[] hackers = new Hacker[NUM_HACKS];
         ThreadGroup grupoHackers = new ThreadGroup("hackers");
         // TODO añadir desfase aleatorio
         for (int i = 0; i < hackers.length; i++) {
             if (CantHacksAlfa > 0) {
-                hackers[i] = new Hacker(grupoHackers, TipoHacker.Alfabético, MAX_CHARS, contrasenha, "" + i);
+                hackers[i] = new Hacker(grupoHackers, TipoHacker.Alfabético, MAX_CHARS, hash, "" + i);
                 CantHacksAlfa--;
             } else if (CantHackNum > 0) {
-                hackers[i] = new Hacker(grupoHackers, TipoHacker.Numérico, MAX_CHARS, contrasenha, "" + i);
+                hackers[i] = new Hacker(grupoHackers, TipoHacker.Numérico, MAX_CHARS, hash, "" + i);
                 CantHackNum--;
 
             } else if (CantHacksAlfanum > 0) {
-                hackers[i] = new Hacker(grupoHackers, TipoHacker.Alfanumérico, MAX_CHARS, contrasenha, "" + i);
+                hackers[i] = new Hacker(grupoHackers, TipoHacker.Alfanumérico, MAX_CHARS, hash, "" + i);
                 CantHacksAlfanum--;
             }
 
             hackers[i].start();
 
+        }
+
+        for (Hacker hacker : hackers) {
+            try {
+                hacker.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }

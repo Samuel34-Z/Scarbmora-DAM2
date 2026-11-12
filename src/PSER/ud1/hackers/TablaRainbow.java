@@ -2,6 +2,8 @@ package pser.ud1.hackers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -51,10 +53,42 @@ public class TablaRainbow {
         }
     }
 
-    public String obtenerHash(String cadena) {
-        String hash = "";
+    public String obtenerHash(String clave) {
+        String hash = null;
+        String sql = """
+                select hash from tablaRainbow
+                where clave = ?
+                """;
+
+        try (PreparedStatement sentencia = getConection().prepareStatement(sql)) {
+            sentencia.setString(1, clave);
+
+            ResultSet rs = sentencia.executeQuery();
+            if (rs.next()) {
+                hash = rs.getString("hash");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return hash;
 
+    }
+
+    public void agregarHash(String clave, String hash) {
+        String sql = """
+                insert into tablaRainbow
+                (clave,hash,usos)
+                values (?,?,X)
+                """;// TODO cambiar X por un select de usos o en su defecto ponerlo a 1
+
+        try (PreparedStatement sentecia = getConection().prepareStatement(sql)) {
+            sentecia.setString(1, clave);
+            sentecia.setString(2, hash);
+            sentecia.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

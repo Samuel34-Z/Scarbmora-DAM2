@@ -20,10 +20,16 @@ public class Hacker extends Thread {
 
     @Override
     public void run() {
-        String clave = generarClave(tipoHacker, maxChars);
-        // TODO buscar en la tabla rainbow si ese hash ya existe
-        if (probarClave(clave)) {
-            this.getThreadGroup().interrupt();
+        while (!interrupted()) {
+            String clave = generarClave(tipoHacker, maxChars);
+            TablaRainbow tablaRainbow = TablaRainbow.getTablaRainbow();
+            String hash = tablaRainbow.obtenerHash(clave);
+            if (hash == null) {
+                hash = Utiles.generateHash(clave);
+            }
+            if (probarClave(hash)) {
+                this.getThreadGroup().interrupt();
+            }
         }
 
     }
