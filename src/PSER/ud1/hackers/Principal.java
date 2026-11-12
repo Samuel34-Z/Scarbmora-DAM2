@@ -27,17 +27,18 @@ public class Principal {
         } while (!caracterAceptado);
 
         Hacker[] hackers = new Hacker[NUM_HACKS];
+        ThreadGroup grupoHackers = new ThreadGroup("hackers");
         // TODO añadir desfase aleatorio
         for (int i = 0; i < hackers.length; i++) {
             if (CantHacksAlfa > 0) {
-                hackers[i] = new Hacker(TipoHacker.Alfabético, MAX_CHARS,contrasenha);
+                hackers[i] = new Hacker(grupoHackers, TipoHacker.Alfabético, MAX_CHARS, contrasenha, "" + i);
                 CantHacksAlfa--;
             } else if (CantHackNum > 0) {
-                hackers[i] = new Hacker(TipoHacker.Numérico, MAX_CHARS,contrasenha);
+                hackers[i] = new Hacker(grupoHackers, TipoHacker.Numérico, MAX_CHARS, contrasenha, "" + i);
                 CantHackNum--;
 
             } else if (CantHacksAlfanum > 0) {
-                hackers[i] = new Hacker(TipoHacker.Alfanumérico, MAX_CHARS,contrasenha);
+                hackers[i] = new Hacker(grupoHackers, TipoHacker.Alfanumérico, MAX_CHARS, contrasenha, "" + i);
                 CantHacksAlfanum--;
             }
 

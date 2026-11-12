@@ -9,7 +9,9 @@ public class Hacker extends Thread {
     private static String caracteresNumericos = "1234567890";
     private static String contrasenhaCorrecta;
 
-    public Hacker(TipoHacker tipoHacker, int maxChars, String contrasenhaCorrecta) {
+    public Hacker(ThreadGroup grupoHackers, TipoHacker tipoHacker, int maxChars, String contrasenhaCorrecta,
+            String nombre) {
+        super(grupoHackers, nombre);
         this.tipoHacker = tipoHacker;
         this.maxChars = maxChars;
         Hacker.contrasenhaCorrecta = contrasenhaCorrecta;
@@ -19,9 +21,9 @@ public class Hacker extends Thread {
     @Override
     public void run() {
         String clave = generarClave(tipoHacker, maxChars);
-        //TODO buscar en la tabla rainbow si ese hash ya existe
+        // TODO buscar en la tabla rainbow si ese hash ya existe
         if (probarClave(clave)) {
-            // TODO interrumpir a todos los hackers
+            this.getThreadGroup().interrupt();
         }
 
     }
