@@ -5,7 +5,7 @@ import java.util.Random;
 public class Hacker extends Thread {
     private TipoHacker tipoHacker;
     private int maxChars;
-    private static String caracteresAlfabeticos = "qwertyuiopasdfghjklñzxcvbnm";
+    private static String caracteresAlfabeticos = "qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM";
     private static String caracteresNumericos = "1234567890";
     private static String contrasenhaCorrecta;
 
@@ -54,9 +54,8 @@ public class Hacker extends Thread {
                     break;
 
                 case TipoHacker.Numérico:
-                    caracter = rd.nextInt(caracteresNumericos.length());
                     // clave += caracteresNumericos.charAt(caracter);
-                    builder.append(caracteresNumericos.charAt(caracter));
+                    builder.append(rd.nextInt(caracteresNumericos.length()));
                     break;
 
                 case TipoHacker.Alfanumérico:
