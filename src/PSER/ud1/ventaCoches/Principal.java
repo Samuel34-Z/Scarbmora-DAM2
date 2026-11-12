@@ -2,14 +2,14 @@ package pser.ud1.ventaCoches;
 
 public class Principal {
     public static void main(String[] args) {
-        final int NUM_PERSONAS = 51;
+        final int NUM_PERSONAS = 50;
         final int NUM_UNIDADES = 20;
         int unidadesLeon = 10;
         int unidadesIbiza = 7;
         int unidadesAteca = 3;
         Thread[] hilos = new Thread[NUM_PERSONAS];
         Coche[] coches = new Coche[NUM_UNIDADES];
-        final int INDEX_VENDEDOR = 0;
+        Vendedor vendedor = new Vendedor(coches);
 
         for (int i = 0; i < coches.length; i++) {
             if (unidadesLeon > 0) {
@@ -26,12 +26,7 @@ public class Principal {
         }
 
         for (int i = 0; i < hilos.length; i++) {
-            if (i == INDEX_VENDEDOR) {
-                hilos[i] = new Vendedor(coches);
-            } else {
-                hilos[i] = new Comprador((Vendedor) hilos[INDEX_VENDEDOR], "" + i);
-            }
-
+            hilos[i] = new Comprador(vendedor, "" + i);
             hilos[i].start();
         }
 
@@ -42,8 +37,6 @@ public class Principal {
                 e.printStackTrace();
             }
         }
-
-        
 
     }
 }

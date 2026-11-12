@@ -1,4 +1,4 @@
-package adat.ud2.bd.prueba;
+package adat.ud2.bd.prueba.persona;
 
 import java.util.List;
 

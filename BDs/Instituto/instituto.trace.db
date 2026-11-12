@@ -1,0 +1,50 @@
+2026-11-07 19:56:24.971193+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create [*]if not exists coches(\000d\000a    matricula varchar(7) primary key,\000d\000a    marca varchar(50),\000d\000a    modelo varchar(50),\000d\000a    codigo_propietario integer,\000d\000a    foreign key (codigo_propietario) references persona(codigo_persona)\000d\000a)"; se esperaba "OR REPLACE, FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"
+Syntax error in SQL statement "create [*]if not exists coches(\000d\000a    matricula varchar(7) primary key,\000d\000a    marca varchar(50),\000d\000a    modelo varchar(50),\000d\000a    codigo_propietario integer,\000d\000a    foreign key (codigo_propietario) references persona(codigo_persona)\000d\000a)"; expected "OR REPLACE, FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"; SQL statement:
+create if not exists coches(
+    matricula varchar(7) primary key,
+    marca varchar(50),
+    modelo varchar(50),
+    codigo_propietario integer,
+    foreign key (codigo_propietario) references persona(codigo_persona)
+) [42001-252]
+2026-11-07 19:57:08.134120+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create [*]if not exists coches(\000d\000a    matricula varchar(7) primary key,\000d\000a    marca varchar(50),\000d\000a    modelo varchar(50),\000d\000a    codigo_propietario integer\000d\000a    foreign key (codigo_propietario) references persona(codigo_persona)\000d\000a)"; se esperaba "OR REPLACE, FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"
+Syntax error in SQL statement "create [*]if not exists coches(\000d\000a    matricula varchar(7) primary key,\000d\000a    marca varchar(50),\000d\000a    modelo varchar(50),\000d\000a    codigo_propietario integer\000d\000a    foreign key (codigo_propietario) references persona(codigo_persona)\000d\000a)"; expected "OR REPLACE, FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"; SQL statement:
+create if not exists coches(
+    matricula varchar(7) primary key,
+    marca varchar(50),
+    modelo varchar(50),
+    codigo_propietario integer
+    foreign key (codigo_propietario) references persona(codigo_persona)
+) [42001-252]
+2026-11-07 19:58:21.781539+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table if not exists coches(\000d\000a    matricula varchar(7) primary key,\000d\000a    marca varchar(50),\000d\000a    modelo varchar(50),\000d\000a    codigo_propietario integer\000d\000a    [*]foreign key (codigo_propietario) references persona(codigo_persona)\000d\000a)"; se esperaba "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table if not exists coches(\000d\000a    matricula varchar(7) primary key,\000d\000a    marca varchar(50),\000d\000a    modelo varchar(50),\000d\000a    codigo_propietario integer\000d\000a    [*]foreign key (codigo_propietario) references persona(codigo_persona)\000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table if not exists coches(
+    matricula varchar(7) primary key,
+    marca varchar(50),
+    modelo varchar(50),
+    codigo_propietario integer
+    foreign key (codigo_propietario) references persona(codigo_persona)
+) [42001-252]
+2026-11-07 19:58:43.082495+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PERSONA" no encontrada
+Table "PERSONA" not found; SQL statement:
+create table if not exists coches(
+    matricula varchar(7) primary key,
+    marca varchar(50),
+    modelo varchar(50),
+    codigo_propietario integer,
+    foreign key (codigo_propietario) references persona(codigo_persona)
+) [42102-252]
+2026-11-07 20:01:13.573105+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PERSONA" no encontrada
+Table "PERSONA" not found; SQL statement:
+create table if not exists coches(
+    matricula varchar(7) primary key,
+    marca varchar(50),
+    modelo varchar(50),
+    codigo_propietario integer,
+    foreign key (codigo_propietario) references persona(codigo_persona)
+) [42102-252]

@@ -1,4 +1,4 @@
-package adat.ud2.bd.prueba;
+package adat.ud2.bd.prueba.persona;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
+
+import adat.ud2.bd.prueba.Conexion;
 
 public class PrincipalPersona {
     private static Scanner sc = new Scanner(System.in);
@@ -18,8 +20,7 @@ public class PrincipalPersona {
 
         do {
 
-            System.out.println("MENÚ");
-            System.out.println("====");
+            System.out.println("==MENÚ==");
             System.out.println("1. Crear tabla");
             System.out.println("2. Listar personas");
             System.out.println("3. Buscar persona");
@@ -144,7 +145,8 @@ public class PrincipalPersona {
 
     private static boolean crearTabla() {
         boolean tablaCreada = false;
-        try (BufferedReader in = new BufferedReader(new FileReader("src\\adat\\ud2\\bd\\prueba\\CrearTabla.sql"))) {
+        try (BufferedReader in = new BufferedReader(
+                new FileReader("src\\adat\\ud2\\bd\\prueba\\persona\\CrearTabla.sql"))) {
 
             String sql = in.readAllAsString();
 

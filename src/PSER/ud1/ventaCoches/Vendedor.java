@@ -1,15 +1,10 @@
 package pser.ud1.ventaCoches;
 
-public class Vendedor extends Thread {
+public class Vendedor {
     Coche[] coches;
 
     public Vendedor(Coche[] coches) {
         this.coches = coches;
-    }
-
-    @Override
-    public void run() {
-        buscarCocheLibre();
     }
 
     public Coche buscarCocheLibre() {

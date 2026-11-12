@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class Conexion {
 
-    private static String url = "jdbc:sqlite:file:./BDs/prueba.sqlite";
+    private static String url = "jdbc:sqlite:file:./BDs/prueba/prueba.sqlite";
     private static String user = "sa";
     private static String password = "";
 
