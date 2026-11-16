@@ -20,9 +20,10 @@ public class Principal {
                 System.out.print("Introduce una formula compuesta por estos elementos [C,H,O,N,S,P] de un máximo de "
                         + MAX_ELEMENTOS + " o '" + STR_FIN + "' para finalizar :");
 
-                formula = sc.nextLine();
+                formula = sc.nextLine().trim();
 
-                if (formula.length() > MAX_ELEMENTOS && (!formula.equals(STR_FIN)) || formula.isEmpty()) {
+                if (formula.length() > MAX_ELEMENTOS && (!formula.equals(STR_FIN)) || formula.isEmpty()
+                        || (!formula.matches("[CHONSP]{1," + MAX_ELEMENTOS + "}")) && (!formula.equals(STR_FIN))) {
                     System.out.println("Formula introducida incorrecta");
                     formulaCorrecta = false;
                 } else {
@@ -63,6 +64,7 @@ public class Principal {
 
                 System.out.println(cuaderno.mostrarGanador());
                 System.out.println(cuaderno.getMasConsultada());
+                cuaderno.limpiarGanador();
             } else {
                 System.out.println("Saliendo del programa...");
                 sc.close();

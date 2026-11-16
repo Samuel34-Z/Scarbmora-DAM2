@@ -9,8 +9,8 @@ public class Cuaderno {
 
     private Map<String, Entrada> mapa;
 
-    private String quimicoGanador;
-    private String formulaGanadora;
+    private String quimicoGanador = "";
+    private String formulaGanadora = "";
 
     public Cuaderno() {
         mapa = new HashMap<>();
@@ -56,9 +56,12 @@ public class Cuaderno {
         return "Ha ganado el químico " + quimicoGanador + " con la formula " + formulaGanadora;
     }
 
-    public void setQuimicoGanador(String nombreQuimico, String formulaPropuesta) {
-        this.quimicoGanador = nombreQuimico;
-        this.formulaGanadora = formulaPropuesta;
+    public synchronized void setQuimicoGanador(String nombreQuimico, String formulaPropuesta) {
+        if (quimicoGanador.equals("")) {
+            this.quimicoGanador = nombreQuimico;
+            this.formulaGanadora = formulaPropuesta;
+        }
+
     }
 
     public void limpiarGanador() {
