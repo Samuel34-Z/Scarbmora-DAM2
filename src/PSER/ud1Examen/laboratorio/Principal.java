@@ -13,6 +13,7 @@ public class Principal {
         Scanner sc = new Scanner(System.in);
         String formula;
         final String STR_FIN = "fin";
+        Cuaderno cuaderno = new Cuaderno();
         do {
             do {
 
@@ -21,8 +22,8 @@ public class Principal {
 
                 formula = sc.nextLine();
 
-                if (formula.length() > MAX_ELEMENTOS && (!formula.equals(STR_FIN))) {
-                    System.out.println("Formula introducida supera la máxima cantidad de elementos");
+                if (formula.length() > MAX_ELEMENTOS && (!formula.equals(STR_FIN)) || formula.isEmpty()) {
+                    System.out.println("Formula introducida incorrecta");
                     formulaCorrecta = false;
                 } else {
                     formulaCorrecta = true;
@@ -31,9 +32,8 @@ public class Principal {
             } while (!formulaCorrecta);
 
             if (!formula.equals(STR_FIN)) {
-                sc.close();
                 Quimico[] quimicos = new Quimico[investigadores];
-                Cuaderno cuaderno = new Cuaderno();
+
                 formula = Utiles.generateHash(formula);
                 ThreadGroup grupo = new ThreadGroup("cientificos");
 
@@ -65,6 +65,7 @@ public class Principal {
                 System.out.println(cuaderno.getMasConsultada());
             } else {
                 System.out.println("Saliendo del programa...");
+                sc.close();
             }
         } while (!formula.equals(STR_FIN));
 

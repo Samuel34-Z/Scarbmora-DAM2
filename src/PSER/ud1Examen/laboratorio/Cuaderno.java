@@ -61,4 +61,9 @@ public class Cuaderno {
         this.formulaGanadora = formulaPropuesta;
     }
 
+    public void limpiarGanador() {
+        this.quimicoGanador = "";
+        this.formulaGanadora = "";
+    }
+
 }
