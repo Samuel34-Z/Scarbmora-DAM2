@@ -53,7 +53,7 @@ public class TablaRainbow {
         }
     }
 
-    public String obtenerHash(String clave) {
+    public synchronized String obtenerHash(String clave) {
         String hash = null;
         String sql = """
                 select hash from tablaRainbow
@@ -76,11 +76,11 @@ public class TablaRainbow {
 
     }
 
-    public void agregarHash(String clave, String hash) {
+    public synchronized void agregarHash(String clave, String hash) {
         String sql = """
                 insert into tablaRainbow
                 (clave,hash,usos)
-                values (?,?,X)
+                values (?,?,1)
                 """;// TODO cambiar X por un select de usos o en su defecto ponerlo a 1
 
         try (PreparedStatement sentecia = getConection().prepareStatement(sql)) {

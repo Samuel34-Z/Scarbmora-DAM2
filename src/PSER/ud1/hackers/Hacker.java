@@ -6,8 +6,9 @@ public class Hacker extends Thread {
     private TipoHacker tipoHacker;
     private int maxChars;
     private static String caracteresAlfabeticos = "qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM";
-    private static String caracteresNumericos = "1234567890";
+    private static int numCaracteresNumericos = 10;
     private static String contrasenhaCorrecta;
+    private TablaRainbow tablaRainbow;
 
     public Hacker(ThreadGroup grupoHackers, TipoHacker tipoHacker, int maxChars, String contrasenhaCorrecta,
             String nombre) {
@@ -15,17 +16,18 @@ public class Hacker extends Thread {
         this.tipoHacker = tipoHacker;
         this.maxChars = maxChars;
         Hacker.contrasenhaCorrecta = contrasenhaCorrecta;
-
+        this.tablaRainbow = TablaRainbow.getTablaRainbow();
     }
 
     @Override
     public void run() {
         while (!interrupted()) {
             String clave = generarClave(tipoHacker, maxChars);
-            TablaRainbow tablaRainbow = TablaRainbow.getTablaRainbow();
+            System.out.println(this.getName() + " " + clave);
             String hash = tablaRainbow.obtenerHash(clave);
             if (hash == null) {
                 hash = Utiles.generateHash(clave);
+                tablaRainbow.agregarHash(clave, hash);
             }
             if (probarClave(hash)) {
                 this.getThreadGroup().interrupt();
@@ -45,28 +47,23 @@ public class Hacker extends Thread {
         int caracter;
         StringBuilder builder = new StringBuilder(maxChars);
 
-        while (builder.length() > maxChars) {
+        while (builder.length() < maxChars) {
             switch (tipoHacker) {
                 case TipoHacker.Alfabético:
                     caracter = rd.nextInt(caracteresAlfabeticos.length());
-                    // clave += caracteresAlfabeticos.charAt(caracter);
                     builder.append(caracteresAlfabeticos.charAt(caracter));
                     break;
 
                 case TipoHacker.Numérico:
-                    // clave += caracteresNumericos.charAt(caracter);
-                    builder.append(rd.nextInt(caracteresNumericos.length()));
+                    builder.append(rd.nextInt(numCaracteresNumericos));
                     break;
 
                 case TipoHacker.Alfanumérico:
                     boolean siguienteEsLetra = rd.nextBoolean();
                     if (siguienteEsLetra) {
                         caracter = rd.nextInt(caracteresAlfabeticos.length());
-                        // clave += caracteresAlfabeticos.charAt(caracter);
                     } else {
-                        caracter = rd.nextInt(caracteresNumericos.length());
-                        // clave += caracteresNumericos.charAt(caracter);
-                        builder.append(caracteresNumericos.charAt(caracter));
+                        builder.append(rd.nextInt(numCaracteresNumericos));
                     }
 
                     break;

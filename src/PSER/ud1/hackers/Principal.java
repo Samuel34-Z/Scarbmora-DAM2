@@ -5,18 +5,21 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) {
 
-        final int MAX_CHARS = 4;
-        final int NUM_HACKS = 3;
+        final int MAX_CHARS = 2;
+        final int NUM_HACKS = 50;
         final int NUM_GRUPOS = 3;
         int CantHackNum = NUM_HACKS / NUM_GRUPOS;
         int CantHacksAlfa = NUM_HACKS / NUM_GRUPOS;
         int CantHacksAlfanum = NUM_HACKS / NUM_GRUPOS;
+        final String CONTRASENHA_TERMIANR = "fin";
 
         Scanner sc = new Scanner(System.in);
         boolean caracterAceptado = true;
         String contrasenha;
         do {
-            System.out.print("Introduce una contraseña de " + MAX_CHARS + " caracteres : ");
+            System.out
+                    .print("Introduce una contraseña de " + MAX_CHARS + " caracteres o " + CONTRASENHA_TERMIANR
+                            + " para finalizar : ");
             contrasenha = sc.nextLine();
             if (contrasenha.length() > MAX_CHARS) {
                 System.out.println("Contraseña no aceptada");
